@@ -3,8 +3,12 @@
 @include('includes.head')
 
 <body>
-    @yield('content')
-    @yield('scripts')
+    <main style="min-height: 90% !important;">
+        @include('includes.header')
+        @yield('content')
+        @yield('scripts')
+    </main>
 </body>
+@include('includes.footer')
 
 </html>
