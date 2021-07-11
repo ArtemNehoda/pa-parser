@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
     mix.js("resources/js/app.js", "public/js")
+    .copy("resources/js/parser-form.js", "public/js/parser-form.js")
     .sass("resources/scss/style.scss", "public/css")
     .copy(
         "node_modules/@fortawesome/fontawesome-free/webfonts",
