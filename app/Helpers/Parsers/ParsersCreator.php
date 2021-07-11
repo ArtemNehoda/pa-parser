@@ -16,7 +16,7 @@ class ParsersCreator
             return new BracketsParser;
         }
 
-        if ($type == 'chairPairsParser') {
+        if ($type == 'charPairsParser') {
             return new CharPairsParser;
         }
 

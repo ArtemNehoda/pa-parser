@@ -24,11 +24,11 @@ class ParserController extends Controller
 
     public function showPairsEnParser()
     {
-        return view('parser.result');
+        return view('parser.pairs_en');
     }
 
     public function parsePairsEn(ParseRequest $request){
-        $result = $this->parserService->parseAll($request->strings, 'bracketsParser');
+        $result = $this->parserService->parseAll($request->strings, 'charPairsParser');
         dd($result);
     }
 

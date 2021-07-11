@@ -2,17 +2,30 @@
 
 namespace App\Helpers\Parsers;
 
-use App\Helpers\Parsers\Interfaces\ParserInterface;
-
-class CharPairsParser implements ParserInterface
+class CharPairsParser extends Parser
 {
-    public function parse(string $string): string
+    private $charPairs;
+
+    public function __construct()
     {
-        return "test";
+        $this->charPairs = config('main.parsers.char_pairs');
     }
 
-    public function parseAll(array $strings): array
+    public function parse(string $string): string
     {
-        return ["test" => "testparsed"];
+        /**
+         ** Strings with less than 2 characters cannot match a pair
+         */
+        $length = strlen($string);
+        if ($length > 1) {
+            $firstChar = $string[0];
+            $lastChar = $string[$length - 1];
+            $pair = "{$firstChar}{$lastChar}";
+            if (in_array($pair, $this->charPairs)) {
+                $substring = substr($string, 1, -1);
+                return $this->parse($substring);
+            }
+        }
+        return $string;
     }
 }
