@@ -18,3 +18,5 @@ Route::get('/brackets', 'App\Http\Controllers\ParserController@showBracketsParse
 Route::post('/brackets', 'App\Http\Controllers\ParserController@parseBrackets')->name('parser.brackets.parse');
 Route::get('/pairs-en', 'App\Http\Controllers\ParserController@showPairsEnParser')->name('parser.pairs_en.show');
 Route::post('/pairs-en', 'App\Http\Controllers\ParserController@parsePairsEn')->name('parser.pairs_en.parse');
+// Route::get('/parser-results/download/{token}', 'App\Http\Controllers\ParserController@showResult')->name('parser.results.download');
+Route::get('/parser-results/{token}', 'App\Http\Controllers\ParserController@showResult')->name('parser.results.show');

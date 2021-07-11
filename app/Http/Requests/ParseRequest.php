@@ -25,7 +25,6 @@ class ParseRequest extends FormRequest
     {
         return [
             'strings' => 'required|array|min:1',
-            'strings.*' => 'required_with:strings'
         ];
     }
 }

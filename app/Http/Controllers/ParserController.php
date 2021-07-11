@@ -17,9 +17,9 @@ class ParserController extends Controller
         return view('parser.brackets');
     }
 
-    public function parseBrackets(ParseRequest $request){
-        $result = $this->parserService->parseAll($request->strings, 'bracketsParser');
-        dd($result);
+    public function parseBrackets(ParseRequest $request)
+    {
+        return $this->parse($request->strings, 'bracketsParser');
     }
 
     public function showPairsEnParser()
@@ -27,12 +27,23 @@ class ParserController extends Controller
         return view('parser.pairs_en');
     }
 
-    public function parsePairsEn(ParseRequest $request){
-        $result = $this->parserService->parseAll($request->strings, 'charPairsParser');
-        dd($result);
+    public function parsePairsEn(ParseRequest $request)
+    {
+        return $this->parse($request->strings, 'charPairsParser');
     }
 
-    public function showResult(){
+    private function parse(array $strings, string $parserType)
+    {
+        $data = collect($strings)->filter(function ($string) {
+            return !empty($string);
+        })->toArray();
+        $token = $this->parserService->saveAsParsed($data, $parserType);
+        return redirect(route('parser.results.show', $token));
+    }
 
+    public function showResult($token)
+    {
+        $parsedResult = $this->parserService->getParsedResult($token);
+        return view('parser.result', compact('parsedResult'));
     }
 }

@@ -9,6 +9,7 @@ return [
         /**
          ** Char pairs that are used in App\Helpers\Parsers\ChairPairsParser
          */
-        'char_pairs' => ['az', 'by', 'cx', 'dw', 'iv', 'fu', 'gt', 'hs', 'ir', 'jq', 'kp', 'lo', 'mn']
+        'char_pairs' => ['az', 'by', 'cx', 'dw', 'iv', 'fu', 'gt', 'hs', 'ir', 'jq', 'kp', 'lo', 'mn'],
+        'token_length' => 30,
     ]
 ];
