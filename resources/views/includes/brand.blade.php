@@ -1,1 +1,1 @@
-<span class="font-weight-bold"><span class="text-primary">PA</span> PARSER</span>
+<a href="{{route('home.show')}}" class="font-weight-bold text-dark"><span class="text-primary">PA</span> PARSER</a>

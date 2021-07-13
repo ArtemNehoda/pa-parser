@@ -1,7 +1,16 @@
 @extends('layouts.main')
 @section('content')
-@component('components.parser_container', ['title' => 'Result', 'description' => 'Your strings are parsed', 'details'
-=> 'You can download a pdf file'])
+@php
+    $parserName = null;
+    if($parsedResult->parser == 'bracketsParser'){
+        $parserName = 'Brackets Parser';
+    }
+    if($parsedResult->parser == 'charPairsParser'){
+        $parserName = 'Char Pairs Parser';
+    }
+@endphp
+@component('components.parser_container', ['title' => 'Operation completed<i class="fas fa-lg fa-spell-check ml-2"></i>', 'description' => "Your strings have been parsed with {$parserName}", 'details'
+=> 'Here is the result:'])
 <div>
     @csrf
     <div class="row mt-2">
@@ -24,15 +33,16 @@
     @endforeach
     <hr>
     <div class="row my-3">
-        <div class="col-12 col-md-8 offset-md-2 d-flex flex-row justify-content-center">
-            <p>Copy this link to download your strings as a square spiral in pdf</p>
+        <div class="col-12 col-md-8 offset-md-2 d-flex flex-column justify-content-center align-items-center">
+            <p>Copy this link to download the pdf file later, or click on "download PDF" to download it now</p>
+            <p><i class="fas fa-exclamation-circle mr-2 text-info"></i>This link will be valid for {{config('main.parsers.token_expires_in') > 1 ? (config('main.parsers.token_expires_in'). ' days') : (config('main.parsers.token_expires_in'). ' day')}}, starting from today</p>
         </div>
-        <div class="col-12 col-md-8 offset-md-2 d-flex flex-row justify-content-center">
+        <div class="col-12 d-flex flex-row justify-content-center">
             <div class="input-group mb-3 ">
-                <input type="text" readonly class="form-control" placeholder="Recipient's username"
-                    value="https://download.link" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" readonly class="form-control"
+                    value="{{route('parser.results.download', $parsedResult->token)}}">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button" id="button-addon2">Download PDF</button>
+                    <a class="btn btn-secondary" href="{{route('parser.results.download', $parsedResult->token)}}">Download PDF<i class="fas fa-file-pdf ml-2"></i></a>
                 </div>
             </div>
         </div>

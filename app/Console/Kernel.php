@@ -24,7 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        /**
+         ** Clean expired parser results every night.
+         */
+        $schedule->command('parser:clean')->dailyAt('03:00');
     }
 
     /**

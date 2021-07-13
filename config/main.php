@@ -11,5 +11,9 @@ return [
          */
         'char_pairs' => ['az', 'by', 'cx', 'dw', 'iv', 'fu', 'gt', 'hs', 'ir', 'jq', 'kp', 'lo', 'mn'],
         'token_length' => 30,
+        /**
+         ** Parser Results token lifetime. unit: days
+         */
+        'token_expires_in' => 1,
     ]
 ];

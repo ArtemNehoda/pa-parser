@@ -25,6 +25,15 @@ class ParseRequest extends FormRequest
     {
         return [
             'strings' => 'required|array|min:1',
+            'strings.*' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'strings.required' => 'At least one string must be entered',
+            'strings.*.required' => 'Empty strings are not allowed'
         ];
     }
 }

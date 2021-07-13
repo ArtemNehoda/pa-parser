@@ -27,6 +27,7 @@ class ParserService
     public function saveAsParsed(array $strings, string $parserType): string
     {
         $data = $this->parseAll($strings, $parserType);
+        // dd($data);
         $parserResult = $this->parserResult::create([
             'parser' => $parserType,
             'token' => Str::random(config('main.parsers.token_length')),
@@ -39,5 +40,17 @@ class ParserService
     {
         $parserResult = $this->parserResult::where('token', $token)->first();
         return $parserResult ?? null;
+    }
+
+    /**
+     ** Cleans all expired results. Lifetime is defined in config (main.parsers.token_expires_in)
+     */
+    public function cleanParsedResults()
+    {
+        $lifetimeDays = config('main.parsers.token_expires_in');
+        $expiredAfterDate = now()
+            ->subDays($lifetimeDays);
+        return $this->parserResult::whereDate('created_at', '<', $expiredAfterDate)
+            ->delete();
     }
 }
