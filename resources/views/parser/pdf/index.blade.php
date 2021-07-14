@@ -7,7 +7,6 @@
     <meta name="description" content="Pdf containing the cleaned strings arranged on a square spiral">
     <meta charset="UTF-8">
     <title></title>
-    <!-- <link rel="stylesheet" href="pdf.css" media="all" /> -->
 </head>
 <style>
 body {

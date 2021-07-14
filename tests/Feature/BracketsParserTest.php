@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Helpers\Parsers\ParsersCreator;
 
@@ -69,18 +67,4 @@ class BracketsParserTest extends TestCase
         ];
         $this->assertTrue($result === $expected);
     }
-
-
-    /*
-| Input         | Output        |
-|---------------|---------------|
-| `(abc)`       | `abc`         |
-| `((abc))`     | `abc`         |
-| `(abc`        | `(abc`        |
-|               |               |
-| `()`          |               |
-| `(ab) (cd)`   | `(ab) (cd)`   |
-| `((ab) (cd))` | `(ab) (cd)`   |
-| `ab(cd)`      | `ab(cd)`      |
-    */
 }
