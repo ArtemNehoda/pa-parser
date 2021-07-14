@@ -27,8 +27,6 @@ This project was builded with
 <!-- GETTING STARTED -->
 ## Getting Started
 
-some text
-
 ### Prerequisites
 
 To start this application, you need to have the following platforms installed on your machine:
@@ -41,26 +39,33 @@ To start this application, you need to have the following platforms installed on
    ```sh
    git clone https://github.com/ArtemNehoda/pa-parser
    ```
-2. Add the necessary permissions
+2. Copy .env.example to .env
    ```sh
-   sudo chmod -R 775 pa-parser
-   sudo chgrp -R 2000 pa-parser/storage
-   sudo chgrp -R 2000 pa-parser/bootstrap/cache
+   cd pa-parser
+   cp .env.example .env
    ```
-3. Build and start docker containers
+
+3. Add the necessary permissions
+   ```sh
+   cd ..
+   sudo chmod -R 775 pa-parser
+   sudo chgrp -R 2000 pa-parser
+   ```
+
+4. Build and start docker containers
    ```sh
    cd pa-parser
    ./build_server.sh
    ./start_server.sh
    ```
-4. Exec database migrations, compile compose packages and frontend assets
+5. Exec database migrations, compile compose packages and frontend assets
    ```sh
    sudo docker-compose run --rm composer install
    sudo docker-compose run --rm artisan migrate
    sudo docker-compose run --rm npm install
    sudo docker-compose run --rm npm run dev
    ```
-5. Run tests
+6. Run tests
    ```sh
    ./run_tests.sh
    ```
