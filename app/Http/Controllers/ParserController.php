@@ -57,8 +57,9 @@ class ParserController extends Controller
     public function downloadPdf($token)
     {
         $parsedResult = $this->parserService->getParsedResult($token);
-        $preformattedString = $this->shapeFormatService->formatSquareSpiral($parsedResult->data);
+        $strings = array_values($parsedResult->data);
+        $preformattedString = $this->shapeFormatService->formatSquareSpiral($strings);
         $date = now()->format('Y_m_d');
-        return $this->pdfService->download('parser.pdf.index', compact('preformattedString'), "pa_parser_{$date}.pdf");
+        return $this->pdfService->download('parser.pdf.index', compact('preformattedString'), "square_spiral_{$date}.pdf");
     }
 }
