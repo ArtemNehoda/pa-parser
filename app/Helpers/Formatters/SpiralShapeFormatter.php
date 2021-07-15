@@ -31,6 +31,9 @@ class SpiralShapeFormatter
          */
         $direction = 'r';
 
+        /**
+         ** For each string, insert chars in the correct coordinates in $matrix, and then place the pointers for the next string and change the direction
+         */
         foreach ($strings as $string) {
             $chars = str_split($string);
             // right
