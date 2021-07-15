@@ -6,8 +6,13 @@ class PdfService
 {
     public function download(string $view, array $params, string $filename)
     {
-       $pdf = $this->generatePdf($view, $params);
-       return $pdf->download($filename);
+        $headers = [
+            'Content-Type' => 'application/pdf',
+        ];
+        return response()->streamDownload(function () use ($view, $params) {
+            $pdf = $this->generatePdf($view, $params);
+            echo $pdf->output();
+        }, $filename, $headers)->send();
     }
 
     private function generatePdf(string $view, array $params)

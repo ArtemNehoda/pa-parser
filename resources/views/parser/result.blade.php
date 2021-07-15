@@ -42,7 +42,7 @@
                 <input type="text" readonly class="form-control"
                     value="{{route('parser.results.download', $parsedResult->token)}}">
                 <div class="input-group-append">
-                    <a class="btn btn-secondary" href="{{route('parser.results.download', $parsedResult->token)}}">Download PDF<i class="fas fa-file-pdf ml-2"></i></a>
+                    <a class="btn btn-secondary" href="{{route('parser.results.download', $parsedResult->token)}}" target="_blank">Download PDF<i class="fas fa-file-pdf ml-2"></i></a>
                 </div>
             </div>
         </div>
