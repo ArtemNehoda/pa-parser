@@ -111,7 +111,7 @@ class SpiralShapeFormatter
         return $line;
     }
 
-    public function prepareStrings($strings)
+    public function prepareStrings(array $strings): array
     {
         $strings = array_values(collect($strings)
             ->filter(function ($string) {
@@ -139,7 +139,7 @@ class SpiralShapeFormatter
         return $this->prepareStrings($strings);
     }
 
-    public function hasUnpreparedStrings($strings)
+    public function hasUnpreparedStrings(array $strings): bool
     {
         $lengths = [];
         foreach ($strings as $string) {
