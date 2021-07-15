@@ -38,8 +38,8 @@ class ParserService
 
     public function getParsedResult(string $token): object
     {
-        $parserResult = $this->parserResult::where('token', $token)->first();
-        return $parserResult ?? null;
+        $parserResult = $this->parserResult::where('token', $token)->firstOrFail();
+        return $parserResult;
     }
 
     /**
